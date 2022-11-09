@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<Channel Id="0" xsd:noNamespaceSchemaLocation="../Config/ELO_Channel.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema-instance" Version="19.2.1" Protected="false">
+    <Description Value="snapshot"/>
+    <ImageAcquisition>
+        <PixelTime Value="0.500000" Unit="us"/>
+        <Width Value="1500" Unit="px"/>
+        <Height Value="1500" Unit="px"/>
+    </ImageAcquisition>
+    <SignalPreprocessing Checked="true">
+        <Clipping Checked="true">
+            <Left Value="20" Unit="px"/>
+            <Top Value="20" Unit="px"/>
+            <Right Value="20" Unit="px"/>
+            <Bottom Value="20" Unit="px"/>
+        </Clipping>
+        <ContrastAdjustment>
+            <List Active="Percental">
+                <Type Id="None"/>
+                <Type Id="Percental"/>
+                <Type Id="GrayValueBased"/>
+                <Type Id="MeanGrayValueBased"/>
+            </List>
+            <Percental>
+                <LowerThreshold Value="0.500000" Unit="%"/>
+                <UpperThreshold Value="0.500000" Unit="%"/>
+            </Percental>
+            <GrayValueBased>
+                <Min Value="35000" Unit="GrayScale"/>
+                <Max Value="62000" Unit="GrayScale"/>
+            </GrayValueBased>
+            <MeanGrayValueBased>
+                <LeftOffset Value="10000" Unit="GrayScale"/>
+                <RightOffset Value="10000" Unit="GrayScale"/>
+            </MeanGrayValueBased>
+        </ContrastAdjustment>
+        <ImageStacking Checked="false">
+            <ImageCount Value="2"/>
+            <List Active="Average">
+                <Type Id="Average"/>
+                <Type Id="Median"/>
+                <Type Id="MinValue"/>
+                <Type Id="MaxValue"/>
+            </List>
+        </ImageStacking>
+    </SignalPreprocessing>
+    <ImagePreprocessing Checked="false">
+        <ImageIndex Value="-1"/>
+        <List/>
+    </ImagePreprocessing>
+    <!-- Image analysis is up to now never used in ELO channels - needed to make things comparable to image processing files. -->
+    <!-- In the future analysing the mean gray value of the image may be helpful to automatically control the signal attenuation. -->
+    <ImageAnalysis Checked="false"/>
+    <SaveImageParameter>
+        <ImageFolder Value="ELO_Images/%Y/%M-%D_%n"/>
+        <ImageName Value="%h-%m-%s"/>
+        <ImageFormat Value="png"/>
+        <SaveOriginalImage Checked="true"/>
+    </SaveImageParameter>
+</Channel>
