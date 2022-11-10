@@ -26,7 +26,7 @@ def create_annulus_mask(h, w, center=None, inner_radius=None, outer_radius=None)
 
     if center is None: # use the middle of the image
         center = (int(w/2), int(h/2))
-    if inner_radius is None:  # use the smallest distance between the center and image walls
+    if inner_radius is None:
         inner_radius = 0
     if outer_radius is None: # use the smallest distance between the center and image walls
         inner_radius = min(center[0], center[1], w-center[0], h-center[1])
@@ -49,7 +49,7 @@ def func_inv(X, a, b, c):
 
 
 # Periodic system data
-path_to_periodic_system_data = "Periodic Table of Elements.csv"
+path_to_periodic_system_data = r"data\Periodic Table of Elements.csv"
 elements = np.array(["Al", "Ti", "Fe", "Ni", "Cu", "Nb", "Mo", "Sn", "W"])
 Z = np.array([13, 22, 26, 28, 29, 41, 42, 50, 74])
 df = pd.read_csv(path_to_periodic_system_data)
@@ -162,6 +162,8 @@ for name, x0, y0, d, R, r, dphi, Ib_max, ax in zip(names, x0s, y0s, ds, Rs, rs, 
     ax[0].set_xticks([])
     ax[0].set_yticks([])
 
+np.save(r"data\Material_Contrast_Calibration_Plate_data.npy", data)
+
 df = pd.DataFrame(data)
 difference = df["150kV"] / df["100kV"]
 fig_diff, ax_diff = plt.subplots(1, 1, figsize=figsize)
@@ -176,9 +178,6 @@ for i, element in enumerate(elements):
     ax_diff.set_ylabel("Detector Voltage Ratio")
     ax_diff.set_title(" $U_{150 kV}/U_{100 kV}$")
 
-
-    #plt.tight_layout()
-    #plt.savefig("Violinplot_multicurrent.png")
 
 for i, name in enumerate(["100 kV unpolished", "150 kV unpolished", "150 kV polished"]):
     axes_ELO[i].set_title(name)
@@ -203,6 +202,6 @@ plt.tight_layout()
 
 for i in plt.get_fignums():
     plt.figure(i)
-    plt.savefig('figure%d.png' % i)
+    # plt.savefig('figure%d.png' % i)
 
 plt.show()

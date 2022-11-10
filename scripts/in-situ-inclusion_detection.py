@@ -186,12 +186,7 @@ for image_path in paths_to_images[1:]:
     # Detect the edges from the features
     sigma = 0.5
     canny_edges = canny(features/np.max(features), sigma=sigma)
-    # img = canny_edges
-    # axes[0].imshow(features, cmap="gray")
-    # axes[2].imshow(img, cmap="gray")
-    # axes[3].imshow(sobel(features), cmap="gray")
-    # plt.show()
-    # quit()
+
 
     # Plot the edges
     images.append(canny_edges)
