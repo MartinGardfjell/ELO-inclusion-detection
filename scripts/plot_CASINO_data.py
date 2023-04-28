@@ -6,6 +6,10 @@ import matplotlib
 import pickle
 import bz2
 
+#########################################################
+########### DATA NOT AVAILABLE IN GITHUB ################
+#########################################################
+
 cwd = os.getcwd()
 parse_data = False
 
