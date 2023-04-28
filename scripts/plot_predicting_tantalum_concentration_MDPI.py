@@ -6,14 +6,15 @@ import pickle
 import os
 
 
+# fitting function
 def func(X, a, b, c):
     return a * (2 ** (-b / np.sqrt(X)) + c)
 
-
+# inverse fitting function
 def func_inv(X, a, b, c):
     return ((-b * np.log(2)) / np.log(X / a - c)) ** 2
 
-
+# Function to plot intervals
 def plot_interval(U0, U1, I, a, b, c, text1, text2, color, start_Z, start_U, mode="both"):
     Z0 = func_inv(U0 / I, a, b, c)
     Z1 = func_inv(U1 / I, a, b, c)
@@ -30,15 +31,16 @@ def plot_interval(U0, U1, I, a, b, c, text1, text2, color, start_Z, start_U, mod
     ax.text(start, U1 + 0.05, text2, color=color, verticalalignment="center", fontsize=10)
     ax.text(start, U0 + 0.05, text1, color=color, verticalalignment="center", fontsize=10)
 
-
+# Values extracted from images
 corrected = [0.91255862, 1.68910593, 1.94510587, 2.08347034, 2.17454121, 2.80431447,
              2.80575022, 3.19268558, 3.83540971, 2.28765629, 1.95726733, 1.66752555]
 
 raw = [0.91461182, 1.6973877,  1.953125,   2.09075928, 2.17468262, 2.79968262,
        2.7923584,  3.17047119, 3.81530762, 2.28637695, 1.96044922, 1.67205811]
 
+# Make into np.arrays
 corrected = np.array(corrected)
-raw = 6*np.array(raw) - 5*corrected
+raw = np.array(raw)
 
 Z = np.array([13, 22, 26, 28, 29, 41, 42, 50, 74, 30.5, 25.4, 21.3])
 
